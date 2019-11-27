@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ITask} from '../../interfaces/ITask';
+import {__importDefault} from 'tslib';
 
 @Component({
   selector: 'app-todo',
@@ -10,6 +11,12 @@ export class TodoComponent implements OnInit {
 
   public firstName: string = 'John';
   public lastName: string = 'Liolios';
+
+  //Modal form variables
+  public taskTitle: string ="";
+  public taskDueDate: Date;
+  public search: string = "";
+
 
   public swalOptions = {
     title: 'Are you sure?',
@@ -73,5 +80,13 @@ export class TodoComponent implements OnInit {
     const thesi = this.todos.findIndex(i => i._id === _id);
     this.todos.splice(thesi, 1);
   }
-
+  public addTask(){
+    let newTask = {
+      _id : this.todos.length + 1 + "",
+      title: this.taskTitle,
+      completed: false,
+      dueDate: this.taskDueDate
+    };
+    this.todos.push(newTask);
+  }
 }
